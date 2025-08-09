@@ -1,93 +1,69 @@
-# Varun's To-Do CLI (v1.0.1)
+# To-Do CLI
 
-A simple, lightweight CLI tool to manage your daily tasks directly from the terminal.
+A simple and efficient Command-Line Interface (CLI) application to manage your daily tasks directly from the terminal. Built with Node.js, this tool allows you to add, list, delete, and mark tasks as done in an easy and intuitive way.
 
-## Features
+## 📦 Installation
 
-* Add a task to your to-do list.
-* Delete a specific task from the list.
-* List all tasks.
-* Clear all tasks.
-* Data persistence using JSON file.
-
-## Installation
+You can install the package globally from npm:
 
 ```bash
 npm install -g varun-to-do-cli
 ```
 
-## Usage
+## 🚀 Usage
 
-### Add a Task
+After installation, you can use the CLI by running:
 
 ```bash
-todo add "Buy groceries"
+todo
 ```
 
-This will add the task **Buy groceries** to your `todays-task` folder.
+### Commands
 
-### List All Tasks
+* **Add a task**:
+
+```bash
+todo add "Task description"
+```
+
+* **List all tasks**:
 
 ```bash
 todo list
 ```
 
-Displays all saved tasks.
-
-### Delete a Specific Task
+* **Mark a task as done**:
 
 ```bash
-todo delete "Buy groceries"
+todo done <task-id>
 ```
 
-Deletes the specified task from the list.
-
-### Clear All Tasks
+* **Delete a task**:
 
 ```bash
-todo clear
+todo delete <task-id>
 ```
 
-Removes all tasks.
+## 🌟 Features
 
-## File Structure
+* Add new tasks quickly.
+* View your pending and completed tasks.
+* Mark tasks as completed.
+* Delete tasks easily.
+* Lightweight and fast.
 
-```
-project/
-│
-├── todays-task/
-│   └── tasks.json   # Stores all your tasks
-└── index.js         # CLI logic
-```
+## 📂 Repository
 
-## Example Workflow
+GitHub Repository: [To-Do-CLI](https://github.com/yourusername/To-Do-CLI)
 
-```bash
-# Add tasks
-todo add "Finish Node.js project"
-todo add "Prepare for AI exam"
+## 🔗 NPM Package
 
-# View tasks
-todo list
+NPM: [varun-to-do-cli](https://www.npmjs.com/package/varun-to-do-cli)
 
-# Delete a task
-todo delete "Finish Node.js project"
+## 📜 License
 
-# Clear all tasks
-todo clear
-```
+This project is licensed under the MIT License.
 
-## Requirements
+---
 
-* Node.js v14 or higher
-* NPM
-
-## Version
-
-**1.0.1** - Initial public release with task add, list, delete, and clear functionality.
-
-## License
-
-MIT License
-
-- we will add some new features in upcoming version
+Easily manage your daily tasks without leaving the terminal!
