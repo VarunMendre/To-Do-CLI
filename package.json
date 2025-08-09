@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "varun-to-do-cli",
+  "version": "1.0.1",
+  "description": "A simple CLI tool for managing today's tasks",
+  "main": "app.js",
+  "bin": {
+    "varun-to-do": "app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["cli", "todo", "tasks", "varun"],
+  "author": "Varun Mendre",
+  "license": "ISC"
+}
