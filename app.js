@@ -24,22 +24,28 @@ try {
   switch (command) {
     // --- CREATE a new file ---
     case "create":
-      if (!arg1) {
+      if (!arg1 || !arg2) {
         console.error("❌ Please provide a file name.");
         break;
       }
-      await fs.writeFile(`${taskFolder}/${arg1}`, ""); // Create empty file
-      console.log(`✅ File '${arg1}' created inside todays-task folder`);
-      break;
+      try {
+        // Check if Folder Exists
+        try {
+          await fs.access(arg1);
+          console.log(`📂 Folder '${arg1}' already exists`);
+        } catch (error) {
+          // Folder doesn't exist → create it
+          await fs.mkdir(arg1, { recursive: true });
+          console.log(`✅ Folder '${arg1}' created`);
+        }
 
-    // --- CREATE an FOLDER
-    case "create-dir":
-      if (!arg1) {
-        console.error("❌ Please provide a file name.");
-        break;
+        //Create File in that folder
+        await fs.writeFile(`${arg1}/${arg2}`, ""); // Create empty file
+        console.log(`✅ File '${arg2}' created inside '${arg1}'`);
+        
+      } catch (error) {
+        console.error(`Something might wrong check again ${error.message}`);
       }
-      await fs.mkdir(arg1, { recursive: true });
-      console.log(`✅ Folder '${arg1}' has been created`);
       break;
 
     // --- RENAME an existing file ---
@@ -53,17 +59,17 @@ try {
       break;
 
     case "rename-dir":
-  if (!arg1 || !arg2) {
-    console.error("❌ Please provide old and new folder names.");
-    break;
-  }
-  try {
-    await fs.rename(`${arg1}`, `${arg2}`);
-    console.log(`✅ Folder renamed from '${arg1}' → '${arg2}'`);
-  } catch (error) {
-    console.error(`❌ Error renaming folder: ${error.message}`);
-  }
-  break;
+      if (!arg1 || !arg2) {
+        console.error("❌ Please provide old and new folder names.");
+        break;
+      }
+      try {
+        await fs.rename(`${arg1}`, `${arg2}`);
+        console.log(`✅ Folder renamed from '${arg1}' → '${arg2}'`);
+      } catch (error) {
+        console.error(`❌ Error renaming folder: ${error.message}`);
+      }
+      break;
 
     // --- DELETE a file ---
     case "delete":
