@@ -11,8 +11,8 @@ import fs from "fs/promises"; // Promise-based file system API
 
 // --- Command-line arguments ---
 const command = process.argv[2]; // The main command: create, rename, delete, list
-const arg1 = process.argv[3];    // First argument: file name or old name
-const arg2 = process.argv[4];    // Second argument: new file name for rename
+const arg1 = process.argv[3]; // First argument: file name or old name
+const arg2 = process.argv[4]; // Second argument: new file name for rename
 
 // Folder where all task files will be stored
 const taskFolder = "./todays-task";
@@ -22,7 +22,6 @@ try {
   await fs.mkdir(taskFolder, { recursive: true });
 
   switch (command) {
-
     // --- CREATE a new file ---
     case "create":
       if (!arg1) {
@@ -31,6 +30,16 @@ try {
       }
       await fs.writeFile(`${taskFolder}/${arg1}`, ""); // Create empty file
       console.log(`✅ File '${arg1}' created inside todays-task folder`);
+      break;
+
+    // --- CREATE an FOLDER
+    case "create-dir":
+      if (!arg1) {
+        console.error("❌ Please provide a file name.");
+        break;
+      }
+      await fs.mkdir(arg1, { recursive: true });
+      console.log(`✅ Folder '${arg1}' has been created`);
       break;
 
     // --- RENAME an existing file ---
@@ -42,6 +51,19 @@ try {
       await fs.rename(`${taskFolder}/${arg1}`, `${taskFolder}/${arg2}`);
       console.log(`✅ File renamed from '${arg1}' → '${arg2}'`);
       break;
+
+    case "rename-dir":
+  if (!arg1 || !arg2) {
+    console.error("❌ Please provide old and new folder names.");
+    break;
+  }
+  try {
+    await fs.rename(`${arg1}`, `${arg2}`);
+    console.log(`✅ Folder renamed from '${arg1}' → '${arg2}'`);
+  } catch (error) {
+    console.error(`❌ Error renaming folder: ${error.message}`);
+  }
+  break;
 
     // --- DELETE a file ---
     case "delete":
@@ -63,7 +85,7 @@ try {
       }
 
       console.log("📋 Files in todays-task folder:");
-      files.forEach(file => console.log(`- ${file}`));
+      files.forEach((file) => console.log(`- ${file}`));
       break;
 
     // --- UNKNOWN command ---
@@ -75,7 +97,6 @@ try {
       console.log("  delete <filename>       Delete a file");
       console.log("  list                    List all files");
   }
-
 } catch (err) {
   // Catch and display any file system errors
   console.error("❌ Error:", err.message);
