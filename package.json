@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "varun-to-do-cli",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "A simple CLI tool for managing today's tasks",
   "main": "app.js",
   "bin": {
